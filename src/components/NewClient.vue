@@ -167,13 +167,7 @@ export default {
       else
         streams = this.selectedAccount.streams.filter(x => x.fullName.toLowerCase().includes(this.search.toLowerCase()))
 
-      streams = streams.sort(function (a, b) {
-        // Turn your strings into dates, and then subtract them
-        // to get a value that is either negative, positive, or zero.
-        return new Date(b.updatedAt) - new Date(a.updatedAt)
-      })
-
-      return streams.slice(0, 20)
+      return streams
 
     }
   }
