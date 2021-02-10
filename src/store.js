@@ -215,19 +215,15 @@ export default new Vuex.Store( {
     } ),
 
     getAccountStreams: ( context, account ) => new Promise( async( resolve, reject ) => {
-      Axios.get( `${account.RestApi}/streams?fields=streamId,name,updatedAt,parent&deleted=false&isComputedResult=false&sort=updatedAt`, { headers: { Authorization: account.Token } } )
+      Axios.get( `${account.RestApi}/streams/lean`, { headers: { Authorization: account.Token } } )
         .then( res => {
           res.data.resources.forEach( s => s.fullName = `${s.streamId} - ${s.name}` )
-          let sorted = res.data.resources.sort( ( a, b ) => {
-            let ad = new Date( a.updatedAt )
-            let bd = new Date( b.updatedAt )
-            return ad > bd ? -1 : 1
-          } ).filter( s => s.parent === null )
+          let sorted = res.data.resources.filter( s => s.parent === null )
           context.commit( 'SET_ACCOUNT_DATA', {...account, validated: true, streams: sorted } )
           resolve( res.data.resources )
         } )
         .catch( err => {
-          // console.log( err )
+          console.log( err )
           context.commit( 'SET_ACCOUNT_DATA', {...account, validated: false } )
           reject( err )
         } )
