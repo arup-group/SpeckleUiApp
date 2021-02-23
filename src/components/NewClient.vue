@@ -52,7 +52,7 @@
                   <v-list-item-content>
                     <v-list-item-title v-text="item.fullName"></v-list-item-title>
                     <v-list-item-subtitle>
-                      <timeago :datetime="item.updatedAt" :auto-update="60"></timeago>
+                      <timeago :datetime="new Date( item.updatedAt )" :auto-update="60"></timeago>
                     </v-list-item-subtitle>
                   </v-list-item-content>
                 </v-list-item>
