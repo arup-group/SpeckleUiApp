@@ -102,7 +102,7 @@
           Confused? Check out the
           <v-btn
             class="mb-1"
-            @click.native="startProcess('https://speckle.systems/docs/clients/revit/basics')"
+            @click.native="startProcess('https://docs.speckle.arup.com/plugins/revit.html')"
             target="_blank"
             light
             x-small
